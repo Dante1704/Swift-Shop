@@ -1,92 +1,92 @@
 [
   {
-    "id_product": "1",
-    "name_product": "Apple",
+    "id": "1",
+    "name": "Apple",
     "category": "Fruits",
     "stock": 100,
     "price": 2.99,
-    "id_store": "[101, 102, 103]",
+    "id_shop": "[101, 102, 103]",
     "image": null
   },
   {
-    "id_product": "2",
-    "name_product": "Rice",
+    "id": "2",
+    "name": "Rice",
     "category": "Grains",
     "stock": 200,
     "price": 1.49,
-    "id_store": "[102, 104, 105]",
+    "id_shop": "[102, 104, 105]",
     "image": null
   },
   {
-    "id_product": "3",
-    "name_product": "Milk",
+    "id": "3",
+    "name": "Milk",
     "category": "Dairy",
     "stock": 50,
     "price": 2.29,
-    "id_store": "[101, 103]",
+    "id_shop": "[101, 103]",
     "image": null
   },
   {
-    "id_product": "4",
-    "name_product": "Chicken",
+    "id": "4",
+    "name": "Chicken",
     "category": "Meat",
     "stock": 30,
     "price": 5.99,
-    "id_store": "[104, 105]",
+    "id_shop": "[104, 105]",
     "image": null
   },
   {
-    "id_product": "5",
-    "name_product": "Whole Wheat Bread",
+    "id": "5",
+    "name": "Whole Wheat Bread",
     "category": "Bakery",
     "stock": 40,
     "price": 3.49,
-    "id_store": "[101, 105]",
+    "id_shop": "[101, 105]",
     "image": null
   },
   {
-    "id_product": "6",
-    "name_product": "Carrots",
+    "id": "6",
+    "name": "Carrots",
     "category": "Vegetables",
     "stock": 60,
     "price": 1.79,
-    "id_store": "[101, 102, 103]",
+    "id_shop": "[101, 102, 103]",
     "image": null
   },
   {
-    "id_product": "7",
-    "name_product": "Yogurt",
+    "id": "7",
+    "name": "Yogurt",
     "category": "Dairy",
     "stock": 25,
     "price": 1.99,
-    "id_store": "[103, 105]",
+    "id_shop": "[103, 105]",
     "image": null
   },
   {
-    "id_product": "8",
-    "name_product": "Crepe Tuna",
+    "id": "8",
+    "name": "Crepe Tuna",
     "category": "Seafood",
     "stock": 15,
     "price": 2.49,
-    "id_store": "[104, 105]",
+    "id_shop": "[104, 105]",
     "image": null
   },
   {
-    "id_product": "9",
-    "name_product": "Coffee",
+    "id": "9",
+    "name": "Coffee",
     "category": "Beverages",
     "stock": 50,
     "price": 4.99,
-    "id_store": "[101, 105]",
+    "id_shop": "[101, 105]",
     "image": null
   },
   {
-    "id_product": "10",
-    "name_product": "Eggs",
+    "id": "10",
+    "name": "Eggs",
     "category": "Dairy",
     "stock": 35,
     "price": 1.99,
-    "id_store": "[102, 103]",
+    "id_shop": "[102, 103]",
     "image": null
   }
 ]
