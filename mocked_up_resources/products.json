@@ -1,92 +1,92 @@
 [
   {
-    "id_product": 1,
+    "id_product": "1",
     "name_product": "Apple",
     "category": "Fruits",
     "stock": 100,
     "price": 2.99,
-    "id_store": [101, 102, 103],
-    "image": "apple_image_url.jpg"
+    "id_store": "[101, 102, 103]",
+    "image": null
   },
   {
-    "id_product": 2,
+    "id_product": "2",
     "name_product": "Rice",
     "category": "Grains",
     "stock": 200,
     "price": 1.49,
-    "id_store": [102, 104, 105],
-    "image": "rice_image_url.jpg"
+    "id_store": "[102, 104, 105]",
+    "image": null
   },
   {
-    "id_product": 3,
+    "id_product": "3",
     "name_product": "Milk",
     "category": "Dairy",
     "stock": 50,
     "price": 2.29,
-    "id_store": [101, 103],
-    "image": "milk_image_url.jpg"
+    "id_store": "[101, 103]",
+    "image": null
   },
   {
-    "id_product": 4,
+    "id_product": "4",
     "name_product": "Chicken",
     "category": "Meat",
     "stock": 30,
     "price": 5.99,
-    "id_store": [104, 105],
-    "image": "chicken_image_url.jpg"
+    "id_store": "[104, 105]",
+    "image": null
   },
   {
-    "id_product": 5,
+    "id_product": "5",
     "name_product": "Whole Wheat Bread",
     "category": "Bakery",
     "stock": 40,
     "price": 3.49,
-    "id_store": [101, 105],
-    "image": "bread_image_url.jpg"
+    "id_store": "[101, 105]",
+    "image": null
   },
   {
-    "id_product": 6,
+    "id_product": "6",
     "name_product": "Carrots",
     "category": "Vegetables",
     "stock": 60,
     "price": 1.79,
-    "id_store": [101, 102, 103],
-    "image": "carrots_image_url.jpg"
+    "id_store": "[101, 102, 103]",
+    "image": null
   },
   {
-    "id_product": 7,
+    "id_product": "7",
     "name_product": "Yogurt",
     "category": "Dairy",
     "stock": 25,
     "price": 1.99,
-    "id_store": [103, 105],
-    "image": "yogurt_image_url.jpg"
+    "id_store": "[103, 105]",
+    "image": null
   },
   {
-    "id_product": 8,
+    "id_product": "8",
     "name_product": "Crepe Tuna",
     "category": "Seafood",
     "stock": 15,
     "price": 2.49,
-    "id_store": [104, 105],
-    "image": "crepe_tuna.jpg"
+    "id_store": "[104, 105]",
+    "image": null
   },
   {
-    "id_product": 9,
+    "id_product": "9",
     "name_product": "Coffee",
     "category": "Beverages",
     "stock": 50,
     "price": 4.99,
-    "id_store": [101, 105],
-    "image": "coffee_image_url.jpg"
+    "id_store": "[101, 105]",
+    "image": null
   },
   {
-    "id_product": 10,
+    "id_product": "10",
     "name_product": "Eggs",
     "category": "Dairy",
     "stock": 35,
     "price": 1.99,
-    "id_store": [102, 103],
-    "image": "eggs_image_url.jpg"
+    "id_store": "[102, 103]",
+    "image": null
   }
 ]
