@@ -4,5 +4,4 @@ module.exports = (model) => {
         shops: 'SHOP'
     }
     return valueofkey[model]
-
 }

@@ -1,7 +1,7 @@
 const Connection = require('../config/DB/connection')
 const config = require('../config/DB/config')
 const db = new Connection(config)
-const { entity } = require('../utils')
+const { entity } = require('../helpers')
 
 
 module.exports = async (req, res) => {
