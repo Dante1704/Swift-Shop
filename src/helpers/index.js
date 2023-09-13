@@ -1,3 +1,6 @@
 module.exports = {
-    entity: require('./entity')
+    getKeys: require('./getKeys'),
+    checkNulls: require('./checkNulls'),
+    entity: require('./entity'),
+    stringToArray: require('./stringToArray')
 }

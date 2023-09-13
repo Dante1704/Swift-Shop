@@ -44,5 +44,5 @@ module.exports = async (req, res) => {
         return res.status(200).send(result)
     }
 
-    return res.status(400).send('Ha ocurrido un error al crear, revise la ruta')
+    return res.status(400).send('Ha ocurrido un error al crear')
 }
