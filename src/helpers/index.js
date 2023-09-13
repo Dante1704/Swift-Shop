@@ -1,6 +1,7 @@
 module.exports = {
-    getKeys: require('./getKeys'),
-    checkNulls: require('./checkNulls'),
+    getKeysTypeMax: require('./getKeysTypeMax'),
+    checkValues: require('./checkValues'),
     entity: require('./entity'),
-    stringToArray: require('./stringToArray')
+    stringToArray: require('./stringToArray'),
+    compareArray: require('./compareArrays')
 }

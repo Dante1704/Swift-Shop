@@ -14,7 +14,7 @@ server.use((err, req, res, next) => {
             message: err.message
         })
     }
-    res.status(404).send("Bad Request")
+    return res.status(404).send(err)
 })
 
 module.exports = server

@@ -1,31 +1,20 @@
-const { clientError } = require("../utils/errors")
-const { getKeys, checkNulls } = require("../helpers")
+const { getKeysTypeMax, checkValues } = require("../helpers")
+const compareArrays = require("../helpers/compareArrays")
 
 //Middlware - Check correct: keys and nulls on form
 module.exports = (req, res, next) => {
     const { model } = req.params
     const form = req.body
 
-    const keys = getKeys(model)
+    const original = getKeysTypeMax(model)
+    const keys = Object.keys(original)
     const formkeys = Object.keys(form)
 
-    const stringKeys = keys.join(", ")
+    //compara que las keys del post sean las mismas que las del objeto original en db
+    compareArrays(keys, formkeys)
 
-    // check keys from getKeys(model) and receive form 
-    if (keys.length !== formkeys.length) { throw new clientError(`Error keys on form, check required keys: ${stringKeys}`, 400) }
+    checkValues(original, form)
 
-    // check includes all keys from form
-    for (let i = 0; i < formkeys.length; i++) {
-        if (!(keys.includes(formkeys[i]))) { throw new clientError(`Error keys on form, check required keys: ${stringKeys}`, 400) }
-    }
-
-    const checkObjectToCreate = {
-        shop: checkNulls(form),
-        product: checkNulls(form)
-    }
-
-    //check nulls on values of keys 
-    checkObjectToCreate[model]
 
     req.form
 

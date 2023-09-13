@@ -7,6 +7,7 @@ const { entity } = require('../helpers')
 
 module.exports = async (req, res) => {
     let { model } = req.params
+    console.log(model)
     const name = entity(model)
     const form = req.body
 
