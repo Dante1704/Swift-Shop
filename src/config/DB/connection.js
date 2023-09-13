@@ -29,7 +29,7 @@ module.exports = Connection;
 
 
 
-// conexion mediante funcion async
+// connection - async function
 
 // const config = require('./config')
 
