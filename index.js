@@ -1,7 +1,7 @@
 const server = require("./src/server")
 
-const port = process.env.PORT ?? 3001
+const config = require('./config')
 
-server.listen(port, () => {
-    console.log("server listening on port:", port)
+server.listen(config.PORT, () => {
+    console.log("server listening on port:", config.PORT)
 })
