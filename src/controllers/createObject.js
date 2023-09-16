@@ -1,15 +1,15 @@
 const Connection = require('../config/DB/connection')
+
 const config = require('../config/DB/config')
 const db = new Connection(config)
 const { v4: uuidv4 } = require('uuid');
-const { entity } = require('../helpers')
-
+const { entity } = require('../helpers');
+const Product = require('../config/schemas/schemaProducts')
 
 module.exports = async (req, res) => {
     let { model } = req.params
-    console.log(model)
-    const name = entity(model)
     const form = req.body
+    const name = entity(model)
 
     const pool = await db.connect()
 
@@ -30,20 +30,13 @@ module.exports = async (req, res) => {
 
     if (name === "PRODUCT") {
         const id = uuidv4();
-        const values = ({ ...form, id })
-        const result = await pool.request()
-            .input('id', values.id)
-            .input('name', values.name)
-            .input('category', values.category)
-            .input('stock', values.stock)
-            .input('price', values.price)
-            .input('image', values.image)
-            .query(
-                `INSERT INTO PRODUCT(id, name, category, stock, price, image)
-                VALUES (@id , @name , @category, @stock, @price, @image)`
-            )
-        return res.status(200).send(result)
+        const values = ({ ...form, id, pool })
+        const result = await new Product(values).create()
+        if (result.rowsAffected[0] >= 1) {
+            return res.status(200).send(`It has been successfully created`)
+        }
+        return res.status(400).send('Error while creating')
     }
 
-    return res.status(400).send('Ha ocurrido un error al crear')
+    return res.status(400).send('Error while creating')
 }

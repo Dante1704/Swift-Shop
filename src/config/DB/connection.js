@@ -1,5 +1,5 @@
 const sql = require('mssql');
-
+const { connectionError } = require('../../utils/errors')
 class Connection {
     constructor(config) {
         this.config = config;
@@ -11,7 +11,7 @@ class Connection {
             this.pool = await sql.connect(this.config);
             return this.pool
         } catch (error) {
-            console.error('Error al conectar a SQL Server:', error);
+            throw new connectionError(`Connection Error`, 404)
         }
     }
 

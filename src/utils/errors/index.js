@@ -6,6 +6,14 @@ class clientError extends Error {
     }
 }
 
+class connectionError extends Error {
+    constructor(message, code = 400) {
+        super(message);
+        this.name = 'connectionError'
+        this.code = code;
+    }
+}
+
 class modelError extends Error {
     constructor(message, code = 400) {
         super(message);
@@ -14,4 +22,4 @@ class modelError extends Error {
     }
 }
 
-module.exports = { clientError, modelError };
+module.exports = { clientError, modelError, connectionError };

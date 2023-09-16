@@ -11,3 +11,5 @@ module.exports = async (req, res) => {
     const result = await pool.request().query(`SELECT * FROM ${name} WHERE id=${id}`)
     res.status(200).send(result)
 }
+
+

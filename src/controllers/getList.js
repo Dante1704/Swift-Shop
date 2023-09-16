@@ -3,7 +3,6 @@ const config = require('../config/DB/config')
 const db = new Connection(config)
 const { entity } = require('../helpers')
 
-
 module.exports = async (req, res) => {
     let { model } = req.params
     const name = entity(model)

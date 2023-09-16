@@ -7,7 +7,7 @@ server.use(express.json())
 server.use(require('./routes'))
 
 server.use((err, req, res, next) => {
-    if (err.name === "clientError" || err.name === "modelError") {
+    if (err.name === "clientError" || err.name === "modelError" || err.name === "connectionError") {
         return res.status(401).send({
             error: true,
             errorName: err.name,
