@@ -21,4 +21,5 @@ router.post('/:model',
     middleware.formValidator,
     controller.createObject)
 
+
 module.exports = router;

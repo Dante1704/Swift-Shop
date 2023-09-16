@@ -1,6 +1,6 @@
 const Connection = require('../config/DB/connection')
-const Shop = require('../config/schemas/schemaShop')
-const Product = require('../config/schemas/schemaProduct')
+const Shop = require('../config/schemas/Shop')
+const Product = require('../config/schemas/Product')
 const { entity } = require('../helpers')
 const config = require('../config/DB/config')
 
