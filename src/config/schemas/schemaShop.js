@@ -1,5 +1,5 @@
 
-class Product {
+class Shop {
     constructor({ id, name, location, address, pool }) {
         this.id = id;
         this.name = name;
@@ -10,7 +10,6 @@ class Product {
 
     async create() {
         try {
-            console.log(this)
             const result = await this.pool.request()
                 .input('id', this.id)
                 .input('name', this.name)
@@ -26,6 +25,16 @@ class Product {
         }
     }
 
+    async getAll() {
+        try {
+            console.log("entro")
+            const result = await this.pool.request().query(`SELECT * FROM SHOP`)
+            return result
+        } catch (error) {
+            console.log('error schema shop', error)
+            return error
+        }
+    }
 }
 
-module.exports = Product;
+module.exports = Shop;

@@ -1,10 +1,11 @@
 const Connection = require('../config/DB/connection')
-
-const config = require('../config/DB/config')
-const db = new Connection(config)
+const Shop = require('../config/schemas/schemaShop')
+const Product = require('../config/schemas/schemaProduct')
 const { v4: uuidv4 } = require('uuid');
 const { entity } = require('../helpers');
-const Product = require('../config/schemas/schemaProducts')
+const config = require('../config/DB/config');
+
+const db = new Connection(config)
 
 module.exports = async (req, res) => {
     let { model } = req.params
@@ -12,26 +13,22 @@ module.exports = async (req, res) => {
     const name = entity(model)
 
     const pool = await db.connect()
-
+    console.log(name)
     if (name === "SHOP") {
-        const { recordset } = await pool.request().query('SELECT COUNT(id) FROM SHOP')
-        const values = ({ ...form, id: recordset[0][''] + 101 })
-        const result = await pool.request()
-            .input('id', values.id)
-            .input('name', values.name)
-            .input('location', values.location)
-            .input('address', values.address)
-            .query(
-                `INSERT INTO SHOP(id, name, location, address)
-                VALUES (@id , @name , @location, @address)`
-            )
-        return res.status(200).send(result)
+        const instance = new Shop({ id: null, name: null, location: null, address: null, pool: pool })
+        const result = await instance.getAll()
+        const id = result.recordset.length + 101
+        const instanceCreate = new Shop({ ...form, id, pool })
+        const resultCreate = await instanceCreate.create()
+        if (resultCreate.rowsAffected[0] >= 1) {
+            return res.status(200).send(`It has been successfully created`)
+        }
     }
 
     if (name === "PRODUCT") {
         const id = uuidv4();
-        const values = ({ ...form, id, pool })
-        const result = await new Product(values).create()
+        const instance = new Product({ ...form, id, pool })
+        const result = await instance.create()
         if (result.rowsAffected[0] >= 1) {
             return res.status(200).send(`It has been successfully created`)
         }
