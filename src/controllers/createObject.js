@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     const name = entity(model)
 
     const pool = await db.connect()
-    console.log(name)
+
     if (name === "SHOP") {
         const instance = new Shop({ id: null, name: null, location: null, address: null, pool: pool })
         const result = await instance.getAll()

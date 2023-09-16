@@ -40,6 +40,18 @@ class Product {
             return error
         }
     }
+
+    async getById() {
+        try {
+            const result = await this.pool.request()
+                .input('id', this.id)
+                .query('SELECT * FROM PRODUCT WHERE id = @id')
+            return result
+        } catch (error) {
+            console.log('error schmeas product')
+            return error
+        }
+    }
 }
 
 module.exports = Product;

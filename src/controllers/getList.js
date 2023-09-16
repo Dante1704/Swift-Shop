@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
     const name = entity(model)
     const pool = await db.connect()
 
+
     if (name === "PRODUCT") {
         const instance = new Product({
             id: null,

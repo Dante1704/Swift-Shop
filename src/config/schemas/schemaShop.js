@@ -23,15 +23,27 @@ class Shop {
         } catch (error) {
             throw new creatingError(`Error while creating`, 404)
         }
-    }
+    } s
 
     async getAll() {
         try {
-            console.log("entro")
             const result = await this.pool.request().query(`SELECT * FROM SHOP`)
             return result
         } catch (error) {
             console.log('error schema shop', error)
+            return error
+        }
+    }
+
+
+    async getById() {
+        try {
+            const result = await this.pool.request()
+                .input('id', this.id)
+                .query('SELECT * FROM SHOP WHERE id = @id')
+            return result
+        } catch (error) {
+            console.log('error schmeas shop')
             return error
         }
     }
