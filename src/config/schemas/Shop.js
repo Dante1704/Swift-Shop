@@ -35,6 +35,16 @@ class Shop {
         }
     }
 
+    async getLength() {
+        try {
+            const result = await this.pool.request().query(`SELECT COUNT(*) AS total_id FROM PRODUCT`)
+            return result
+        } catch (error) {
+            console.log('error schema shop', error)
+            return error
+        }
+    }
+
 
     async getById() {
         try {

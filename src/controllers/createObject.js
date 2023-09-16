@@ -16,8 +16,8 @@ module.exports = async (req, res) => {
 
     if (name === "SHOP") {
         const instance = new Shop({ id: null, name: null, location: null, address: null, pool: pool })
-        const result = await instance.getAll()
-        const id = result.recordset.length + 101
+        const result = await instance.getLength()
+        const id = result.recordset.total_id + 101
         const instanceCreate = new Shop({ ...form, id, pool })
         const resultCreate = await instanceCreate.create()
         if (resultCreate.rowsAffected[0] >= 1) {

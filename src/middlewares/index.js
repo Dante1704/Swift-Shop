@@ -1,4 +1,5 @@
 module.exports = {
     formValidator: require('./formValidator'),
-    modelValidator: require('./modelValidator')
+    modelValidator: require('./modelValidator'),
+    deleteValidator: require('./deleteValidator')
 }

@@ -52,6 +52,17 @@ class Product {
             return error
         }
     }
+
+    async delete() {
+        try {
+            const result = await this.pool.request()
+                .input('id', this.id)
+                .query('DELETE FROM PRODUCT WHERE id = @id');
+            return result;
+        } catch (error) {
+            throw new Error('Error al eliminar producto');
+        }
+    }
 }
 
 module.exports = Product;
