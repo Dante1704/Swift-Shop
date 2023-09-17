@@ -8,9 +8,6 @@ const db = new Connection(config)
 
 module.exports = async (req, res) => {
     let { model, id } = req.params
-    console.log('typeofid', typeof id)
-    console.log('model', model)
-
     const name = entity(model)
     const pool = await db.connect()
 
@@ -24,8 +21,8 @@ module.exports = async (req, res) => {
             pool
         })
         const result = await instance.delete()
-        console.log('result', result)
-        return res.status(200).send(result.recordset[0])
+        if (result.rowsAffected[0] >= 1) { return res.status(200).send('Se borro el product') }
+        return res.status(404).send('no existe el producto a borrar error')
     }
 
     // if (name === "SHOP") {

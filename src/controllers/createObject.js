@@ -37,7 +37,6 @@ module.exports = async (req, res) => {
                 return new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
             }));
 
-
             for (const instanceCreateRelation of instanceCreatePromises) {
                 await instanceCreateRelation.create()
             }
