@@ -1,10 +1,10 @@
 const Connection = require('../config/DB/connection')
 const Shop = require('../config/schemas/Shop')
 const Product = require('../config/schemas/Product')
+const Product_shop = require('../config/schemas/Product_shop');
 const { v4: uuidv4 } = require('uuid');
 const { entity, stringToArray } = require('../helpers');
 const config = require('../config/DB/config');
-const Product_shop = require('../config/schemas/Product_shop');
 
 const db = new Connection(config)
 
@@ -33,13 +33,15 @@ module.exports = async (req, res) => {
         const result = await instance.create()
         if (result.rowsAffected[0] >= 1) {
             const arrShops = shops.split(',').map(shop => parseInt(shop, 10))
-            await Promise.all(arrShops.forEach(async shop_id => {
-                const instance = new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
-                const resultCreate = await instance.create()
-                if (resultCreate.rowsAffected[0] = 0) {
-                    return res.status(200).send('Error while post info in intermediate table')
-                }
+            const instanceCreatePromises = await Promise.all(arrShops.map(async (shop_id) => {
+                return new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
             }));
+
+
+            for (const instanceCreateRelation of instanceCreatePromises) {
+                await instanceCreateRelation.create()
+            }
+
             return res.status(200).send(`It has been successfully created`)
         }
         return res.status(400).send('Error while creating')
