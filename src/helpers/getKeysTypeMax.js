@@ -5,7 +5,8 @@ module.exports = (model) => {
             category: ['string', 20],
             stock: ['int'],
             price: ['int'],
-            image: ['string', 255]
+            image: ['string', 255],
+            shops: ['string', 255]
         },
         shops: {
             name: ['string', 25],

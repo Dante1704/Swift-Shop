@@ -23,7 +23,7 @@ class Shop {
         } catch (error) {
             throw new creatingError(`Error while creating`, 404)
         }
-    } s
+    }
 
     async getAll() {
         try {

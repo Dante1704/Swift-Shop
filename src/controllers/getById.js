@@ -21,7 +21,8 @@ module.exports = async (req, res) => {
             pool
         })
         const result = await instance.getById()
-        return res.status(200).send(result.recordset[0])
+        if (result.recordset[0] !== undefined) { return res.status(200).send(result.recordset[0]) }
+        return res.status(200).send("no se encontro")
     }
 
     if (name === "SHOP") {
@@ -33,7 +34,8 @@ module.exports = async (req, res) => {
             pool
         })
         const result = await instance.getById()
-        return res.status(200).send(result.recordset[0])
+        if (result.recordset[0] !== undefined) { return res.status(200).send(result.recordset[0]) }
+        return res.status(200).send("no se encontro")
     }
     return res.status(400).send('ha habido un error')
 }

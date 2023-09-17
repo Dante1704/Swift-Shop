@@ -57,8 +57,14 @@ class Product {
         try {
             const result = await this.pool.request()
                 .input('id', this.id)
+                .query('DELETE FROM PRODUCT_SHOP WHERE product_id = @id');
+
+            if (!result) { throw new Error('Error eliminando relacion') }
+
+            const result1 = await this.pool.request()
+                .input('id', this.id)
                 .query('DELETE FROM PRODUCT WHERE id = @id');
-            return result;
+            return result1;
         } catch (error) {
             throw new Error('Error al eliminar producto');
         }
