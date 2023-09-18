@@ -6,9 +6,10 @@ module.exports = (req, res, next) => {
     const { model } = req.params
     const form = req.body
 
+    const formkeys = Object.keys(form)
+
     const original = getKeysTypeMax(model)
     const keys = Object.keys(original)
-    const formkeys = Object.keys(form)
 
     //compara que las keys del post sean === que las del objeto original en db
     compareArrays(keys, formkeys)
@@ -17,6 +18,7 @@ module.exports = (req, res, next) => {
     checkValues(original, form)
 
     req.form
+
 
     next()
 }

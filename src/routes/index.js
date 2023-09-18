@@ -21,5 +21,12 @@ router.post('/:model',
     middleware.formValidator,
     controller.createObject)
 
+//delete object
+router.delete('/:model/:id',
+    middleware.modelValidator,
+    middleware.deleteValidator,
+    controller.deleteObject
+)
+
 
 module.exports = router;

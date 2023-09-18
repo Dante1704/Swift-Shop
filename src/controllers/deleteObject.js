@@ -20,23 +20,22 @@ module.exports = async (req, res) => {
             price: null,
             pool
         })
-        const result = await instance.getById()
-        if (result.recordset[0] !== undefined) { return res.status(200).send(result.recordset[0]) }
-        return res.status(200).send("no se encontro")
+        const result = await instance.delete()
+        if (result.rowsAffected[0] >= 1) { return res.status(200).send('Se borro el product') }
+        return res.status(404).send('no existe el producto a borrar error')
     }
 
-    if (name === "SHOP") {
-        const instance = new Shop({
-            id,
-            name: null,
-            location: null,
-            address: null,
-            pool
-        })
-        const result = await instance.getById()
-        if (result.recordset[0] !== undefined) { return res.status(200).send(result.recordset[0]) }
-        return res.status(200).send("no se encontro")
-    }
+    // if (name === "SHOP") {
+    //     const instance = new Shop({
+    //         id,
+    //         name: null,
+    //         location: null,
+    //         address: null,
+    //         pool
+    //     })
+    //     const result = await instance.getById()
+    //     return res.status(200).send(result.recordset[0])
+    // }
     return res.status(400).send('ha habido un error')
 }
 

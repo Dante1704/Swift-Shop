@@ -24,6 +24,7 @@ VALUES
 -- insertar tabla intermediaria product-shop
 INSERT INTO PRODUCT_SHOP(product_id,shop_id)
 VALUES
+-- ('7cb42a9a-1c66-41ca-8186-3776e9b4e82c','105');
 (1,101),
 (1,102),
 (1,103),
