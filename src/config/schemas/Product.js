@@ -69,6 +69,15 @@ class Product {
             throw new Error('Error al eliminar producto');
         }
     }
-}
 
+    async getTotal() {
+        try {
+            const result = await this.pool.request().query(`SELECT COUNT(*) AS total_id FROM PRODUCT`)
+            return result
+        } catch (error) {
+            console.log('error schema PRODUCT', error)
+            return error
+        }
+    }
+}
 module.exports = Product;
