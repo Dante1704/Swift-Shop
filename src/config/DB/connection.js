@@ -12,7 +12,7 @@ class Connection {
             this.pool = await sql.connect(this.config);
             return this.pool
         } catch (error) {
-            throw new connectionError(`Connection Error: Unable to connect to the DB`, 404)
+            throw new connectionError(`Connection Error: Unable to connect to the DB`, 503)
         }
     }
 

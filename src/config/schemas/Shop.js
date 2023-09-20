@@ -1,4 +1,4 @@
-
+const { queryError } = require('../../utils/errors')
 class Shop {
     constructor({ id, name, location, address, pool }) {
         this.id = id;
@@ -10,6 +10,7 @@ class Shop {
 
     async create() {
         try {
+            console.log(this)
             const result = await this.pool.request()
                 .input('id', this.id)
                 .input('name', this.name)
@@ -20,29 +21,21 @@ class Shop {
               VALUES (@id , @name , @location, @address)`
                 );
             return result
-        } catch (error) {
-            throw new creatingError(`Error while creating`, 404)
-        }
+        } catch (err) { throw new queryError(`Error when try create an object, create()`, 409) }
     }
 
     async getAll() {
         try {
             const result = await this.pool.request().query(`SELECT * FROM SHOP`)
             return result
-        } catch (error) {
-            console.log('error schema shop', error)
-            return error
-        }
+        } catch (err) { throw new queryError('Error when try getAll()', 409) }
     }
 
     async getTotal() {
         try {
             const result = await this.pool.request().query(`SELECT COUNT(id) AS total_id FROM SHOP`)
-            return result
-        } catch (error) {
-            console.log('error schema shop', error)
-            return error
-        }
+            return result.recordset[0].total_id
+        } catch (err) { throw queryError('Error al obtener el total, getTotal()', 409) }
     }
 
 
@@ -52,10 +45,7 @@ class Shop {
                 .input('id', this.id)
                 .query('SELECT * FROM SHOP WHERE id = @id')
             return result
-        } catch (error) {
-            console.log('error schmeas shop')
-            return error
-        }
+        } catch (err) { throw new queryError('Error when try getById()', 409) }
     }
 }
 

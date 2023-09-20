@@ -11,37 +11,32 @@ const db = new Connection(config)
 
 module.exports = async (req, res) => {
     let { model } = req.params
-    const { body } = req
+    const form = req.body
     const name = entity(model)
 
     const pool = await db.connect()
 
     if (name === "SHOP") {
-        const instance = new Shop({ id: null, name: null, location: null, address: null, pool: pool })
-        const result = await instance.getTotal()
-        const id = result + 101
-        const instanceCreate = new Shop({ ...body, id, pool })
-        const resultCreate = await instanceCreate.create()
-        if (resultCreate.rowsAffected[0] >= 1) {
-            response(res, 201, `It has been successfully created`)
+        const instanceUpdate = new Shop({ id, name, location, address, pool })
+        const resultUpdate = await instanceUpdate.update()
+        if (resultUpdate.rowsAffected[0] >= 1) {
+            response(res, 201, `It has been successfully updated`)
         }
     }
 
     if (name === "PRODUCT") {
-        const id = uuidv4();
-        const { shops, ...product } = body
-        const instance = new Product({ ...product, id, pool })
-        const result = await instance.create()
+        const instance = new Product({ id, name, category, stock, price, pool })
+        const result = await instance.update()
         if (result.rowsAffected[0] >= 1) {
             const arrShops = shops.split(',').map(shop => parseInt(shop, 10))
-            const instanceCreatePromises = await Promise.all(arrShops.map(async (shop_id) => {
+            const instanceUpdatePromises = await Promise.all(arrShops.map(async (shop_id) => {
                 return new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
             }));
 
-            for (const instanceCreateRelation of instanceCreatePromises) {
-                await instanceCreateRelation.create()
+            for (const instanceUpdateRelation of instanceUpdatePromises) {
+                await instanceUpdateRelation.update()
             }
-            response(res, 201, `It has been successfully created`)
+            response(res, 201, `It has been successfully updated`)
         }
         return res.status(400).send('Error while creating')
     }

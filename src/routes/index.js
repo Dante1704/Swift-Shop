@@ -14,7 +14,7 @@ router.get('/:model',
 //CREATE an object of any entity
 router.post('/:model',
     middleware.modelValidator,
-    middleware.formValidator,
+    middleware.createValidator,
     controller.createObject
 )
 
@@ -36,6 +36,12 @@ router.delete('/:model/:id',
     middleware.modelValidator,
     middleware.deleteValidator,
     controller.deleteObject
+)
+
+router.put('/:model/:id',
+    middleware.modelValidator,
+    middleware.updateValidator
+    // , controller.updateObject
 )
 
 

@@ -1,5 +1,5 @@
 const { getKeysTypeMax, checkValues } = require("../helpers")
-const compareArrays = require("../helpers/compareArrays")
+const compareArrays = require("../helpers/compareKeys")
 
 //Middlware - Check id
 module.exports = (req, res, next) => {
