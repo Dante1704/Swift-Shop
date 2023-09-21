@@ -10,7 +10,6 @@ router.get('/:model',
     controller.getList
 )
 
-
 //CREATE an object of any entity
 router.post('/:model',
     middleware.modelValidator,
@@ -30,7 +29,6 @@ router.get('/:model/:id',
     controller.getById
 )
 
-
 //DELETE an object of any entity
 router.delete('/:model/:id',
     middleware.modelValidator,
@@ -38,6 +36,7 @@ router.delete('/:model/:id',
     controller.deleteObject
 )
 
+//UPDATE an object of any entity
 router.put('/:model/:id',
     middleware.modelValidator,
     middleware.updateValidator
