@@ -1,5 +1,4 @@
-const creatingError = require('../../utils/errors/index')
-
+const { queryError } = require('../../utils/errors');
 class Product {
     constructor({ id, name, category, stock, price, image, pool }) {
         this.id = id;
@@ -24,21 +23,16 @@ class Product {
                     `INSERT INTO PRODUCT(id, name, category, stock, price, image)
                     VALUES (@id , @name , @category, @stock, @price, @image)`
                 );
-            console.log('result', result)
+            console.log(result)
             return result
-        } catch (error) {
-            throw new creatingError(`Error while creating`, 404)
-        }
+        } catch (err) { throw new queryError(`Error when try create an object, create()`, 409) }
     }
 
     async getAll() {
         try {
             const result = await this.pool.request().query(`SELECT * FROM PRODUCT`)
-            return result
-        } catch (error) {
-            console.log('error schema products', error)
-            return error
-        }
+            return result.recordset
+        } catch (err) { throw new queryError('Error when try getAll()', 409) }
     }
 
     async getById() {
@@ -47,10 +41,7 @@ class Product {
                 .input('id', this.id)
                 .query('SELECT * FROM PRODUCT WHERE id = @id')
             return result
-        } catch (error) {
-            console.log('error schmeas product')
-            return error
-        }
+        } catch (err) { throw new queryError('Error when try getById()', 409) }
     }
 
     async delete() {
@@ -59,16 +50,20 @@ class Product {
                 .input('id', this.id)
                 .query('DELETE FROM PRODUCT_SHOP WHERE product_id = @id');
 
-            if (!result) { throw new Error('Error eliminando relacion') }
+            if (!result) { throw new queryerr('Error eliminando relacion', 409) }
 
             const result1 = await this.pool.request()
                 .input('id', this.id)
                 .query('DELETE FROM PRODUCT WHERE id = @id');
             return result1;
-        } catch (error) {
-            throw new Error('Error al eliminar producto');
-        }
+        } catch (err) { throw new queryError('Error al eliminar producto, delete()', 409); }
+    }
+
+    async getTotal() {
+        try {
+            const result = await this.pool.request().query(`SELECT COUNT(*) AS total_id FROM PRODUCT`)
+            return result
+        } catch (err) { throw queryError('Error al obtener el total, getTotal()', 409) }
     }
 }
-
 module.exports = Product;

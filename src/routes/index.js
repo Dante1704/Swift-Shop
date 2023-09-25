@@ -4,28 +4,43 @@ const controller = require('../controllers')
 const middleware = require('../middlewares')
 
 
-//getlist by any entity 
+//GETLIST by any entity 
 router.get('/:model',
     middleware.modelValidator,
-    controller.getList)
+    controller.getList
+)
 
-
-//getById by any entity 
-router.get('/:model/:id',
-    middleware.modelValidator,
-    controller.getById)
-
-//create an object of any entity
+//CREATE an object of any entity
 router.post('/:model',
     middleware.modelValidator,
-    middleware.formValidator,
-    controller.createObject)
+    middleware.createValidator,
+    controller.createObject
+)
 
-//delete object
+//GETTOTAL by any entity
+router.get('/:model/count',
+    middleware.modelValidator,
+    controller.getTotal
+)
+
+//GETBYID by any entity 
+router.get('/:model/:id',
+    middleware.modelValidator,
+    controller.getById
+)
+
+//DELETE an object of any entity
 router.delete('/:model/:id',
     middleware.modelValidator,
     middleware.deleteValidator,
     controller.deleteObject
+)
+
+//UPDATE an object of any entity
+router.put('/:model/:id',
+    middleware.modelValidator,
+    middleware.updateValidator
+    // , controller.updateObject
 )
 
 
