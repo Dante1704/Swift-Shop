@@ -23,6 +23,7 @@ class Product {
                     `INSERT INTO PRODUCT(id, name, category, stock, price, image)
                     VALUES (@id , @name , @category, @stock, @price, @image)`
                 );
+            console.log(result)
             return result
         } catch (err) { throw new queryError(`Error when try create an object, create()`, 409) }
     }

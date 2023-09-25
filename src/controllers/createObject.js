@@ -32,16 +32,18 @@ module.exports = async (req, res) => {
         const { shops, ...product } = body
         const instance = new Product({ ...product, id, pool })
         const result = await instance.create()
-        if (result.rowsAffected[0] >= 1) {
-            const arrShops = shops.split(',').map(shop => parseInt(shop, 10))
-            const instanceCreatePromises = await Promise.all(arrShops.map(async (shop_id) => {
-                return new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
-            }));
 
-            for (const instanceCreateRelation of instanceCreatePromises) {
-                await instanceCreateRelation.create()
-            }
-            response(res, 201, `It has been successfully created`)
+        if (result.rowsAffected[0] >= 1) {
+            const arrShops = shops.split(',').map(Number)
+
+            const instanceCreatePromises = arrShops.map((shop_id) => {
+                const instance = new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
+                return instance.create //regreso promesas sin ejecutar 
+            });
+
+            await Promise.all(instanceCreatePromises)
+
+            return response(res, 201, `It has been successfully created`)
         }
         return res.status(400).send('Error while creating')
     }

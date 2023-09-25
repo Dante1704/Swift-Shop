@@ -11,10 +11,10 @@ module.exports = (req, res, next) => {
     const templateObject = getKeysTypeMax(model)
     const keys = Object.keys(templateObject)
 
-    //compara que las keys del post sean === que las del objeto templateObject en db
+    //compara que las keys del post sean === que las del objeto templateObject, tambien de que tenga id en db
     compareKeys(keys, bodyKeys)
 
-    //checkea valores en sus props, mayores.
+    //checkea que no haya nullos, los tipos de datos y el largo cuando es un varchar. La db en mysql, varchar(255)
     checkValues(templateObject, body)
 
     req.body

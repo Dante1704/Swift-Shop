@@ -10,7 +10,6 @@ class Shop {
 
     async create() {
         try {
-            console.log(this)
             const result = await this.pool.request()
                 .input('id', this.id)
                 .input('name', this.name)
@@ -27,7 +26,7 @@ class Shop {
     async getAll() {
         try {
             const result = await this.pool.request().query(`SELECT * FROM SHOP`)
-            return result
+            return result.recordset
         } catch (err) { throw new queryError('Error when try getAll()', 409) }
     }
 
