@@ -5,5 +5,6 @@ module.exports = {
     getById: catchedAsync(require('./getById')),
     createObject: catchedAsync(require('./createObject')),
     deleteObject: catchedAsync(require('./deleteObject')),
-    getTotal: catchedAsync(require('./getTotal'))
+    getTotal: catchedAsync(require('./getTotal')),
+    updateObject: catchedAsync(require('./updateObject'))
 }

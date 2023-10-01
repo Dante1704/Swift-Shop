@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
         const result = await instance.create()
 
         if (result.rowsAffected[0] >= 1) {
-            const arrShops = shops.split(',').map(Number)
+            const arrShops = shops.split(',').map((shop_id) => Number(shop_id))
 
             const instanceCreatePromises = arrShops.map((shop_id) => {
                 const instance = new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })

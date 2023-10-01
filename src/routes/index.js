@@ -39,8 +39,8 @@ router.delete('/:model/:id',
 //UPDATE an object of any entity
 router.put('/:model/:id',
     middleware.modelValidator,
-    middleware.updateValidator
-    // , controller.updateObject
+    middleware.updateValidator,
+    controller.updateObject
 )
 
 

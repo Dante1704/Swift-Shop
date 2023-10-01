@@ -65,5 +65,29 @@ class Product {
             return result
         } catch (err) { throw queryError('Error al obtener el total, getTotal()', 409) }
     }
+
+    async update() {
+        try {
+            const result = await this.pool.request().input('id', this.id)
+                .input('name', this.name)
+                .input('category', this.category)
+                .input('stock', this.stock)
+                .input('price', this.price)
+                .input('image', this.image)
+                .query(
+                    `UPDATE PRODUCT
+                    SET name = @name,
+                        category = @category,
+                        stock = @stock,
+                        price = @price,
+                        image = @image
+                    WHERE id = @id`
+                )
+            return result
+        } catch (err) {
+            console.log(err)
+            return err
+        }
+    }
 }
 module.exports = Product;

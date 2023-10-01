@@ -11,12 +11,18 @@ const db = new Connection(config)
 
 module.exports = async (req, res) => {
     let { model } = req.params
-    const form = req.body
-    const name = entity(model)
+    const { id, name, category, stock, price, shops, image } = req.body
+    const entity2 = entity(model)
+    console.log(id)
+    console.log(name)
+    console.log(category)
+    console.log(stock)
+    console.log(price)
+    console.log(shops)
 
     const pool = await db.connect()
 
-    if (name === "SHOP") {
+    if (entity2 === "SHOP") {
         const instanceUpdate = new Shop({ id, name, location, address, pool })
         const resultUpdate = await instanceUpdate.update()
         if (resultUpdate.rowsAffected[0] >= 1) {
@@ -24,18 +30,21 @@ module.exports = async (req, res) => {
         }
     }
 
-    if (name === "PRODUCT") {
-        const instance = new Product({ id, name, category, stock, price, pool })
+    if (entity2 === "PRODUCT") {
+        const instance = new Product({ id, name, category, stock, price, image, pool })
         const result = await instance.update()
-        if (result.rowsAffected[0] >= 1) {
-            const arrShops = shops.split(',').map(shop => parseInt(shop, 10))
-            const instanceUpdatePromises = await Promise.all(arrShops.map(async (shop_id) => {
-                return new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
-            }));
 
-            for (const instanceUpdateRelation of instanceUpdatePromises) {
-                await instanceUpdateRelation.update()
-            }
+        if (result.rowsAffected[0] >= 1) {
+            const arrShops = shops.split(',').map((shop_id) => Number(shop_id))
+
+
+            const instanceUpdatePromises = arrShops.map((shop_id) => {
+                const instance = new Product_shop({ product_id: id, shop_id: shop_id.toString(), pool })
+                return instance.update //regreso promesas sin ejecutar () 
+            });
+
+            await Promise.all(instanceUpdatePromises)
+
             response(res, 201, `It has been successfully updated`)
         }
         return res.status(400).send('Error while creating')
