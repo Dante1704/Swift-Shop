@@ -20,6 +20,25 @@ class Product_shop {
             throw new creatingError(`Error while creating`, 404)
         }
     }
+
+    async update() {
+        try {
+            const result = await this.pool.request()
+                .input('product', this.product_id)
+                .input('shop', this.shop_id)
+                .query(
+                    `UPDATE PRODUCT_SHOP
+                    SET product_id = @product_id,
+                        shop_id = @shop_id
+                    WHERE product_id = @product_id_param AND
+                    shop_id = @shop_id_param`
+                )
+            return result
+        } catch (err) {
+            console.log(err)
+            return err
+        }
+    }
 }
 
 module.exports = Product_shop;
